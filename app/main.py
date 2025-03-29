@@ -1,7 +1,15 @@
 from fastapi import FastAPI
+from app import models
+from app.database import engine
 
 app = FastAPI(title="Audio Service")
 
+@app.on_event("startup")
+async def startup():
+    # создаём таблицы, если их нет
+    async with engine.begin() as conn:
+        await conn.run_sync(models.Base.metadata.create_all)
+
 @app.get("/")
 def read_root():
-    return {"message": "Hello World!"}
+    return {"message": "Hello, мир!"}
