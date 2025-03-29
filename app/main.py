@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app import models
 from app.database import engine
 from app.routers import users 
+from app.routers import users, auth
 
 app = FastAPI(title="Audio Service")
 
@@ -17,3 +18,5 @@ def read_root():
 
 
 app.include_router(users.router) 
+app.include_router(users.router)
+app.include_router(auth.router)
