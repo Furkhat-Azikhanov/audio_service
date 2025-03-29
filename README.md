@@ -28,7 +28,7 @@ cd audio_service
 ```
 
 ### 2. Создай файл `.env`
-❗ Настоящий `.env` не пушится в репозиторий, создай сам рядом с `docker-compose.yml`
+❗ Создай рядом с `docker-compose.yml`
 
 ```
 POSTGRES_DB=audio_db
