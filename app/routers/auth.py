@@ -6,6 +6,7 @@ from app.models import User
 from app.database import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
+from app.utils.token import create_access_token  
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
@@ -66,8 +67,10 @@ async def yandex_callback(request: Request, db: AsyncSession = Depends(get_db)):
             await db.commit()
             await db.refresh(user)
 
+        access_token = create_access_token({"user_id": user.id})
+
         return {
-            "message": f"Успешный вход как {email}",
-            "user_id": user.id,
+            "access_token": access_token,
+            "token_type": "bearer",
             "email": user.email,
         }

@@ -6,6 +6,10 @@ class Settings(BaseSettings):
     YANDEX_OAUTH_CLIENT_ID: str
     YANDEX_OAUTH_CLIENT_SECRET: str
     YANDEX_OAUTH_REDIRECT_URI: str
+    JWT_SECRET: str
+    JWT_ALGORITHM: str
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int
+
     
     class Config:
         env_file = ".env"
