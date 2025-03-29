@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app import models
 from app.database import engine
+from app.routers import users 
 
 app = FastAPI(title="Audio Service")
 
@@ -13,3 +14,6 @@ async def startup():
 @app.get("/")
 def read_root():
     return {"message": "Hello, мир!"}
+
+
+app.include_router(users.router) 
