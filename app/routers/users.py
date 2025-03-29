@@ -10,7 +10,7 @@ router = APIRouter(prefix="/users", tags=["Users"])
 from fastapi.security import OAuth2PasswordBearer
 from app.utils.token import verify_token
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/fake/token")
 
 async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)):
     payload = verify_token(token)
